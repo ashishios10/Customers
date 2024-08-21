@@ -58,16 +58,19 @@ jobs:
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
-      - name: Test
-        run: |
-          xcodebuild test-without-building \
-          -scheme "Devskiller" \
-          -sdk iphonesimulator \
-          -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.4', CODE_SIGNING_ALLOWED='NO'\
-          -derivedDataPath "DerivedData" \
-          -enableCodeCoverage YES \
-          -only-testing:CustomersTests | xcpretty --color --simple
-            test || exit 1
+#      - name: Test
+#        run: |
+#          xcodebuild test-without-building \
+#          -scheme "Devskiller" \
+#          -sdk iphonesimulator \
+#          -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.4', CODE_SIGNING_ALLOWED='NO' \
+#          -derivedDataPath "DerivedData" \
+#          -enableCodeCoverage YES \
+#          -only-testing:CustomersTests | xcpretty --color --simple
+#            test || exit 1
+            
+      - name: Run tests
+        run: swift test
 
       - name: build archive
         run: |
