@@ -64,7 +64,7 @@ jobs:
           xcodebuild \
            -scheme "Devskiller" \
            -sdk iphonesimulator \
-           -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' \
+           -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2', CODE_SIGNING_ALLOWED='NO'\
             test || exit 1
 
       - name: build archive
