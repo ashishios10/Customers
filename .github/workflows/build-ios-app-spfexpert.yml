@@ -59,16 +59,9 @@ jobs:
 
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
           
-      - name: Test
-        run: |
-          xcodebuild -scheme "CustomersTests" \
-          -destination "OS=17.4,name=iPhone 15 Pro,platform=iOS Simulator" \
-          -derivedDataPath "DerivedData" \
-          -enableCodeCoverage YES \
-          -configuration Debug \
-          -only-testing:CustomersTests | xcpretty --color --simple
-           test || exit 1
-
+      - name: Run tests
+        run: ./run_tests.sh
+  
       - name: build archive
         run: |
           xcodebuild -scheme "Devskiller" \
