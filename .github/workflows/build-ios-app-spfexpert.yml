@@ -77,9 +77,14 @@ jobs:
 
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
   
+      - name: Install Dependencies
+        run:
+          pod install --repo-update
+        shell: bash
       - name: build archive
         run: |
           xcodebuild -scheme "Devskiller" \
+          -workspace Customers.xcworkspace \
           -archivePath $RUNNER_TEMP/devskiller.xcarchive \
           -sdk iphoneos \
           -configuration Debug \
